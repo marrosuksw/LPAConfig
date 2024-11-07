@@ -16,7 +16,7 @@ public class Word {
         this.enabled = enabled;
     }
 
-    private String getText() {
+    public String getText() {
         return text;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class WordSet {
     private String title;
-    private List<Word> content;
+    private List<Word> words;
     private boolean enabled;
 
     public WordSet(String title, String jsonString) {
@@ -24,7 +24,7 @@ public class WordSet {
     private void Deserialize(String jsonString) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            content = objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructCollectionType(List.class, Word.class));
+            words = objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructCollectionType(List.class, Word.class));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,12 +38,12 @@ public class WordSet {
         this.title = title;
     }
 
-    public List<Word> getContent() {
-        return content;
+    public List<Word> getWords() {
+        return words;
     }
 
     public void addWord(Word word) {
-        content.add(word);
+        words.add(word);
     }
 
     public boolean getEnabled() {
@@ -52,5 +52,14 @@ public class WordSet {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    // test
+    public void print() {
+        System.out.println("---- Words in set \"" + title + "\": ----");
+        for (Word word : words) {
+            System.out.println(word.getText());
+        }
+        System.out.println();
     }
 }

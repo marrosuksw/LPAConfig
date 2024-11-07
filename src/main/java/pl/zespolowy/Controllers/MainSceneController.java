@@ -49,7 +49,9 @@ public class MainSceneController {
 
         String wordSetPath = rootPath + "/wordsets/";
         initWordSets(wordSetPath);
-
+        for (String key : wordSets.keySet()) {
+            wordSets.get(key).print();
+        }
 
     }
 
@@ -83,8 +85,6 @@ public class MainSceneController {
 
                         WordSet wordSet = new WordSet(title, content, false);
                         wordSets.put(title, wordSet);
-
-                        System.out.println(content); // Print or process the content
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

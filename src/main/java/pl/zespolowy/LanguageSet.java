@@ -10,6 +10,7 @@ public class LanguageSet {
     private List<Language> languages;
 
     public LanguageSet(String title, String jsonString) {
+        this.title = title;
         Deserialize(jsonString);
     }
 
@@ -40,9 +41,10 @@ public class LanguageSet {
 
     // test
     public void print() {
-        System.out.println("Languages in set: \"" + title + "\".");
+        System.out.println("---- Languages in set \"" + title + "\": ----");
         for (Language l : languages) {
             System.out.println(l.getName());
         }
+        System.out.println();
     }
 }
