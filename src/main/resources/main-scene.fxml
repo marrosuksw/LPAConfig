@@ -45,6 +45,14 @@
                   </HBox>
                </children>
             </VBox>
+            <VBox>
+               <Button fx:id="translateButton" onAction="#handleTranslate" text="Translate">
+
+               </Button>
+               <TextArea fx:id="textArea">
+
+               </TextArea>
+            </VBox>
          </children>
       </VBox>
    </children>
