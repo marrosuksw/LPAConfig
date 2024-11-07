@@ -5,20 +5,18 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
-import pl.zespolowy.*;
+import pl.zespolowy.Controllers.language.LanguageSet;
+import pl.zespolowy.Controllers.translation.Translation;
+import pl.zespolowy.Controllers.translation.Translator;
+import pl.zespolowy.Controllers.words.WordSet;
 
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
-
 
 
 @Getter
@@ -37,7 +35,7 @@ public class MainSceneController {
 
     private Translator translator;
     private Map<String, WordSet> wordSets;
-    private LanguageSet  languageSet;
+    private LanguageSet languageSet;
 
     public void initialize() {
 

@@ -1,4 +1,4 @@
-package pl.zespolowy;
+package pl.zespolowy.Controllers.words;
 
 public class Word {
     private String text;

@@ -5,16 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pl.zespolowy.Controllers.MainSceneController;
+import pl.zespolowy.Controllers.translation.Translator;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
 
 public class Main extends Application {
     @Override

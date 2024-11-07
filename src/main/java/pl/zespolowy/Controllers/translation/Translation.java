@@ -1,8 +1,7 @@
-package pl.zespolowy;
+package pl.zespolowy.Controllers.translation;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Translation {
     private String text;

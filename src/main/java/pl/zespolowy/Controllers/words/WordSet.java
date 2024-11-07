@@ -1,6 +1,7 @@
-package pl.zespolowy;
+package pl.zespolowy.Controllers.words;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package pl.zespolowy;
+package pl.zespolowy.Controllers.language;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

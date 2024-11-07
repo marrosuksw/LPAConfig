@@ -1,4 +1,4 @@
-package pl.zespolowy;
+package pl.zespolowy.Controllers.translation;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

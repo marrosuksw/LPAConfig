@@ -1,4 +1,4 @@
-package pl.zespolowy;
+package pl.zespolowy.Controllers.language;
 
 public class Language {
     private String name;
