@@ -1,19 +1,20 @@
 package pl.zespolowy.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
-import pl.zespolowy.Translation;
-import pl.zespolowy.Translator;
-import pl.zespolowy.Word;
+import pl.zespolowy.*;
 
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -28,48 +29,73 @@ public class MainSceneController {
     @FXML
     private TextArea textArea;
 
-    private Translator translator;
-    private Map<String, List<Word>> wordSets;
+    @FXML
+    private VBox subjectBox;
 
-    public void initialize() {}
+    @FXML
+    private ListView subjectList;
+
+    private Translator translator;
+    private Map<String, WordSet> wordSets;
+    private LanguageSet  languageSet;
+
+    public void initialize() {
+
+        String rootPath = System.getProperty("user.dir");
+
+        String languagesPath = rootPath + "/languages.json";
+        initLanguages("set1", languagesPath);
+        languageSet.print();
+
+        String wordSetPath = rootPath + "/wordsets/";
+        initWordSets(wordSetPath);
+
+
+    }
 
     public void setTranslator(Translator translator) {
         this.translator = translator;
     }
 
-    public void initWordSets(String path) {
-        {
-            String fileName = "example_dupa123.txt";
-            File file = new File(fileName);
-
-            try {
-                // Check if the file already exists
-                if (!file.exists()) {
-                    // Create the file
-                    file.createNewFile();
-                    System.out.println("File created: " + file.getName());
-                }
-
-                // Use FileWriter to write to the file
-                FileWriter writer = new FileWriter(file);
-                writer.write("Hello, world!\nThis is a test file.");
-                writer.close(); // Always close the writer
-                System.out.println("Successfully wrote to the file.");
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void initLanguages(String title, String path) {
+        try {
+            String content = Files.readString(Paths.get(path));
+            languageSet = new LanguageSet(title, content);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void initWordSets(String path) {
+        wordSets = new HashMap<>();
 
 
 
         File dir = new File(path);
-        String[] files = dir.list();
-        System.out.println("Files:\n");
-        if (files != null) {
-            for (String fileName : files) {
-                System.out.println(fileName);
+        if (dir.exists() && dir.isDirectory()) {
+            String[] fileNames = dir.list();
+
+            if (fileNames != null) {
+                for (String fileName : fileNames) {
+                    try {
+                        String title = fileName.split(".json")[0];
+                        String content = Files.readString(Paths.get(path + fileName));
+
+                        WordSet wordSet = new WordSet(title, content, false);
+                        wordSets.put(title, wordSet);
+
+                        System.out.println(content); // Print or process the content
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(fileName);
+                }
+
+            } else {
+                System.out.println("The current directory is empty or an error occurred.");
             }
+        } else {
+            System.out.println("The current directory does not exist or is not a directory.");
         }
     }
 

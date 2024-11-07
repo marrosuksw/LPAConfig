@@ -53,6 +53,11 @@
 
                </TextArea>
             </VBox>
+            <VBox fx:id="subjectBox">
+               <ListView fx:id="subjectList">
+
+               </ListView>
+            </VBox>
          </children>
       </VBox>
    </children>

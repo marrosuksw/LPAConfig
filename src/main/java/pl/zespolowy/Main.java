@@ -8,22 +8,27 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pl.zespolowy.Controllers.MainSceneController;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Set;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException, NoSuchFieldException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main-scene.fxml"));
         Parent root = fxmlLoader.load();
         MainSceneController controller = fxmlLoader.getController();
 
         Translator translator = new Translator();
         controller.setTranslator(translator);
-        controller.initWordSets("/wordsets/");
+
+
+
 
 
         Scene scene = new Scene(root, 800, 600);
