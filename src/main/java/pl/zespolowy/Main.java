@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.stage.Stage;
-import pl.zespolowy.Controllers.MainSceneController;
+import pl.zespolowy.Controllers.MainViewController;
 import pl.zespolowy.Controllers.translation.Translator;
 
 import java.io.IOException;
@@ -15,9 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException, NoSuchFieldException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main-scene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mainView.fxml"));
         Parent root = fxmlLoader.load();
-        MainSceneController controller = fxmlLoader.getController();
+        MainViewController controller = fxmlLoader.getController();
 
         Translator translator = new Translator();
         controller.setTranslator(translator);
@@ -26,10 +26,12 @@ public class Main extends Application {
 
 
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 600, 400);
 
-        stage.setTitle("Windows");
+        stage.setTitle("Language Proximity Analysis");
         stage.setScene(scene);
+        stage.setResizable(false);
+
         stage.show();
     }
 

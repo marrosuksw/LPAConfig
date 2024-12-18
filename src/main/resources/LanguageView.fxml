@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="600.0" maxWidth="800.0" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.zespolowy.LanguageViewController">
+   <children>
+      <TableView fx:id="themeTableView" prefHeight="200.0" prefWidth="300.0">
+        <columns>
+          <TableColumn fx:id="themeEnableTableColumn" prefWidth="63.20001220703125" />
+          <TableColumn fx:id="themeNameTableColumn" prefWidth="235.20001220703125" text="Themes" />
+        </columns>
+      </TableView>
+      <TableView fx:id="languageTableView" layoutX="300.0" prefHeight="200.0" prefWidth="300.0">
+        <columns>
+          <TableColumn fx:id="languageEnableTableColumn" prefWidth="75.0" />
+          <TableColumn fx:id="languageNameTableColumn" prefWidth="224.0" text="Languages" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="button" layoutX="265.0" layoutY="215.0" prefHeight="34.0" prefWidth="70.0" text="Compute" />
+   </children>
+</AnchorPane>
