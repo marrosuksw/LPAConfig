@@ -1,11 +1,15 @@
 package pl.zespolowy.Controllers.language;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 public class Language {
     private String name;
     private String code;
-    private boolean enabled;
+    private Boolean enabled;
 
-    public Language() {}
+    public Language() {
+    }
 
     public Language(String name, String code) {
         this.name = name;
@@ -13,10 +17,10 @@ public class Language {
         this.enabled = false;
     }
 
-    public Language(String name, String code, boolean enabled) {
+    public Language(String name, String code, BooleanProperty enabled) {
         this.name = name;
         this.code = code;
-        this.enabled = true;
+        this.enabled = false;
     }
 
     public String getName() {

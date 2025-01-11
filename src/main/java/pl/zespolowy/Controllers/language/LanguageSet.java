@@ -1,6 +1,10 @@
 package pl.zespolowy.Controllers.language;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import javafx.beans.property.BooleanProperty;
+import javafx.collections.ObservableList;
+import org.apache.commons.codec.language.bm.Languages;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,6 +20,7 @@ public class LanguageSet {
 
     private void Deserialize(String jsonString) {
         ObjectMapper objectMapper = new ObjectMapper();
+
         try {
             languages = objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructCollectionType(List.class, Language.class));
         } catch (IOException e) {
@@ -31,11 +36,11 @@ public class LanguageSet {
         this.title = title;
     }
 
-    public List<Language> getLanguages() {
+    public List<Language> getList() {
         return languages;
     }
 
-    public void addLanguage(Language language) {
+    public void addToList(Language language) {
         languages.add(language);
     }
 
@@ -43,7 +48,8 @@ public class LanguageSet {
     public void print() {
         System.out.println("---- Languages in set \"" + title + "\": ----");
         for (Language l : languages) {
-            System.out.println(l.getName());
+            System.out.println(l.getName() + " ");
+            System.out.println(l.getEnabled());
         }
         System.out.println();
     }

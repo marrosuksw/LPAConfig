@@ -38,7 +38,6 @@ public class MainViewController {
 
         String languagesPath = rootPath + "/languages.json";
         initLanguages("set1", languagesPath);
-        languageSet.print();
 
         String wordSetPath = rootPath + "/wordsets/";
         initWordSets(wordSetPath);
@@ -98,7 +97,7 @@ public class MainViewController {
             System.out.println("The current directory does not exist or is not a directory.");
         }
     }
-
+/*
     @FXML
     public void handleTranslate() {
         String wordSet = "jabłko; banan; cytryna";
@@ -111,4 +110,5 @@ public class MainViewController {
         }
         System.out.println();
     }
+ */
 }
