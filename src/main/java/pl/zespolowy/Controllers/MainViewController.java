@@ -1,10 +1,12 @@
 package pl.zespolowy.Controllers;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import pl.zespolowy.Controllers.language.LanguageSet;
 import pl.zespolowy.Controllers.translation.Translation;
 import pl.zespolowy.Controllers.translation.Translator;
@@ -34,23 +36,13 @@ public class MainViewController {
 
     @FXML
     public void initialize() {
-        String rootPath = System.getProperty("user.dir");
-
-        String languagesPath = rootPath + "/languages.json";
-        initLanguages("set1", languagesPath);
-
-        String wordSetPath = rootPath + "/wordsets/";
-        initWordSets(wordSetPath);
-        for (String key : wordSets.keySet()) {
-            wordSets.get(key).print();
-        }
-        loadTabOneContent();
+        //loadTabOneContent();
     }
 
     private void loadTabOneContent() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LanguageView.fxml"));
-            AnchorPane tabOneContent = loader.load();
+            VBox tabOneContent = loader.load();
             themesLanguagesTab.setContent(tabOneContent);
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,10 +59,10 @@ public class MainViewController {
     public void setTranslator(Translator translator) {
         this.translator = translator;
     }
+
     public void initWordSets(String path) {
+
         wordSets = new HashMap<>();
-
-
 
         File dir = new File(path);
         if (dir.exists() && dir.isDirectory()) {
@@ -82,7 +74,8 @@ public class MainViewController {
                         String title = fileName.split(".json")[0];
                         String content = Files.readString(Paths.get(path + fileName));
 
-                        WordSet wordSet = new WordSet(title, content, false);
+                        SimpleBooleanProperty newBool = new SimpleBooleanProperty(false);
+                        WordSet wordSet = new WordSet(title, content, newBool);
                         wordSets.put(title, wordSet);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -97,18 +90,5 @@ public class MainViewController {
             System.out.println("The current directory does not exist or is not a directory.");
         }
     }
-/*
-    @FXML
-    public void handleTranslate() {
-        String wordSet = "jabłko; banan; cytryna";
 
-        Translation translation = translator.translate(wordSet, "pl", "en");
-
-        System.out.println("----- LIST -------- ");
-        for (String str : translation.toList()) {
-            System.out.println("'" + str + "'");
-        }
-        System.out.println();
-    }
- */
 }

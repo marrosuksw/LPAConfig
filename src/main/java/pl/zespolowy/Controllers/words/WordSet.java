@@ -1,6 +1,10 @@
 package pl.zespolowy.Controllers.words;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import pl.zespolowy.Controllers.language.SimpleBooleanPropertyDeserializer;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,12 +12,13 @@ import java.util.List;
 public class WordSet {
     private String title;
     private List<Word> words;
-    private boolean enabled;
+    @JsonDeserialize(using = SimpleBooleanPropertyDeserializer.class)
+    private BooleanProperty enabled;
 
-    public WordSet(String title, String jsonString, boolean enabled) {
+    public WordSet(String title, String jsonString, BooleanProperty enabled) {
         this.title = title;
         deserialize(jsonString);
-        this.enabled = enabled;
+        this.enabled = new SimpleBooleanProperty(false);
     }
 
     private void deserialize(String jsonString) {
@@ -41,11 +46,11 @@ public class WordSet {
         words.add(word);
     }
 
-    public boolean getEnabled() {
+    public BooleanProperty getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(BooleanProperty enabled) {
         this.enabled = enabled;
     }
 

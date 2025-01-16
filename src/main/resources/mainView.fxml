@@ -16,13 +16,13 @@
             <TabPane fx:id="tabPane" layoutY="100.0" prefHeight="300.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
               <tabs>
                 <Tab fx:id="themesLanguagesTab" text="Themes &amp; Languages">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
+                    <content>
+                        <fx:include source="LanguageView.fxml"/>
+                    </content>
                 </Tab>
                 <Tab fx:id="themesWordsTab" text="Words">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <fx:include source="wordsView.fxml"/>
                   </content>
                 </Tab>
               </tabs>

@@ -1,12 +1,14 @@
 package pl.zespolowy.Controllers.language;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 public class Language {
     private String name;
     private String code;
-    private Boolean enabled;
+    @JsonDeserialize(using = SimpleBooleanPropertyDeserializer.class)
+    private BooleanProperty enabled;
 
     public Language() {
     }
@@ -14,13 +16,13 @@ public class Language {
     public Language(String name, String code) {
         this.name = name;
         this.code = code;
-        this.enabled = false;
+        this.enabled = new SimpleBooleanProperty(false);
     }
 
     public Language(String name, String code, BooleanProperty enabled) {
         this.name = name;
         this.code = code;
-        this.enabled = false;
+        this.enabled = new SimpleBooleanProperty(false);
     }
 
     public String getName() {
@@ -39,11 +41,11 @@ public class Language {
         this.code = code;
     }
 
-    public boolean getEnabled() {
+    public BooleanProperty getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(BooleanProperty enabled) {
         this.enabled = enabled;
     }
 }

@@ -1,11 +1,13 @@
 package pl.zespolowy.Controllers;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import pl.zespolowy.Controllers.language.LanguageSet;
+import pl.zespolowy.Controllers.language.SimpleBooleanPropertyDeserializer;
 import pl.zespolowy.Controllers.translation.Translation;
 import pl.zespolowy.Controllers.translation.Translator;
 import pl.zespolowy.Controllers.words.WordSet;
@@ -80,8 +82,8 @@ public class MainSceneController {
                     try {
                         String title = fileName.split(".json")[0];
                         String content = Files.readString(Paths.get(path + fileName));
-
-                        WordSet wordSet = new WordSet(title, content, false);
+                        SimpleBooleanProperty prop = new SimpleBooleanProperty(false);
+                        WordSet wordSet = new WordSet(title, content, prop);
                         wordSets.put(title, wordSet);
                     } catch (IOException e) {
                         e.printStackTrace();

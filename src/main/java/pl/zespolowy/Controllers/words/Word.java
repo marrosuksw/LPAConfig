@@ -1,19 +1,25 @@
 package pl.zespolowy.Controllers.words;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import pl.zespolowy.Controllers.language.SimpleBooleanPropertyDeserializer;
+
 public class Word {
     private String text;
-    private boolean enabled;
+    @JsonDeserialize(using = SimpleBooleanPropertyDeserializer.class)
+    private BooleanProperty enabled;
 
     public Word() {}
 
     public Word(String text) {
         this.text = text;
-        this.enabled = true;
+        this.enabled = new SimpleBooleanProperty(false);
     }
 
-    public Word(String text, boolean enabled) {
+    public Word(String text, BooleanProperty enabled) {
         this.text = text;
-        this.enabled = enabled;
+        this.enabled = new SimpleBooleanProperty(false);
     }
 
     public String getText() {
@@ -24,11 +30,11 @@ public class Word {
         this.text = text;
     }
 
-    public boolean getEnabled() {
+    public BooleanProperty getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(BooleanProperty enabled) {
         this.enabled = enabled;
     }
 }

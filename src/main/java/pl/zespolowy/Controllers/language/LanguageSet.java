@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import org.apache.commons.codec.language.bm.Languages;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LanguageSet {
@@ -22,7 +23,8 @@ public class LanguageSet {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            languages = objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructCollectionType(List.class, Language.class));
+            languages = new ArrayList<>();
+            languages = objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, Language.class));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +49,7 @@ public class LanguageSet {
     // test
     public void print() {
         System.out.println("---- Languages in set \"" + title + "\": ----");
+        if (languages.isEmpty()) System.out.println("Empty list!!!");
         for (Language l : languages) {
             System.out.println(l.getName() + " ");
             System.out.println(l.getEnabled());
